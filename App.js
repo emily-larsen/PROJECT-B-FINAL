@@ -1,21 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+import ItemList from './components/ItemList';
+import ItemDetails from './components/ItemDetails';
+
+const Stack = createStackNavigator();
+
+const App = () => {
+
+  const [items, setItems] = useState([
+    {id: 1, name: 'First Item', image: require('./assets/chicken.jpg')},
+    {id: 2, name: 'Second Item', image: require('./assets/norway.jpg')},
+    {id: 3, name: 'Third Item', image: require('./assets/slov.jpg')},
+    {id: 4, name: 'First Item', image: require('./assets/chicken.jpg')},
+    {id: 5, name: 'Second Item', image: require('./assets/norway.jpg')},
+    {id: 6, name: 'Third Item', image: require('./assets/slov.jpg')},
+    {id: 7, name: 'First Item', image: require('./assets/chicken.jpg')},
+    {id: 8, name: 'Second Item', image: require('./assets/norway.jpg')},
+    {id: 9, name: 'Third Item', image: require('./assets/slov.jpg')},
+  
+  ])
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen 
+        name="Item List" 
+        component={ItemList} 
+        initialParams={{ items: items}}
+        />
+        <Stack.Screen name="Item Details" component={ItemDetails} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
