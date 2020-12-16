@@ -8,6 +8,9 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import * as MediaLibrary from 'expo-media-library';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 import ItemList from './components/ItemList';
 import ItemDetails from './components/ItemDetails';
 
@@ -33,7 +36,7 @@ const App = () => {
     {id: 10, name: 'My King', image: require('./assets/img10.jpg')},
     {id: 11, name: 'Off white jawns', image: require('./assets/slov.jpg')},
     {id: 12, name: 'U KnOw Da VIbez', image: require('./assets/norway.jpg')},
-  ])
+])
 
 
   useEffect( () => {
@@ -116,7 +119,7 @@ const storeData = async (items) => {
         <Stack.Screen
           name="Ems Photos"
           component={ItemList}
-          initialParams={{ items: items }} 
+          initialParams={{ items:  items }} 
           options={{
             headerRight: () => (
               <View style={styles.buttons}>
@@ -151,10 +154,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    marginBottom: 5
+    marginBottom: 5,
+    marginTop: 1,
   },
     libraryButton: {
       marginLeft: 245,
-    }
-
+    },
 })
